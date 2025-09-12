@@ -17,6 +17,13 @@ while cap.isOpened():
     if not(ret):
         break
 
+    b, g, r = frame[center_height, center_width]
+    if r > g and r > b:
+        color = (0, 0, 255)
+    elif g > r and g > b:
+        color = (0, 255, 0)
+    else:
+        color = (255, 0, 0)
 
     cv2.rectangle(frame,
                   (center_width - 10, center_height - 50),
@@ -28,6 +35,17 @@ while cap.isOpened():
                   (center_width - 50, center_height + 10),
                   (0, 0, 255),
                   5)
+
+    cv2.rectangle(frame,
+                  (center_width - 9, center_height - 49),
+                  (center_width + 9, center_height + 49),
+                  color,
+                  -1)
+    cv2.rectangle(frame,
+                  (center_width + 49, center_height - 9),
+                  (center_width - 49, center_height + 9),
+                  color,
+                  -1)
 
 
 
